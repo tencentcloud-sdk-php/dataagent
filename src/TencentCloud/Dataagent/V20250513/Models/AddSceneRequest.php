@@ -18,16 +18,18 @@ namespace TencentCloud\Dataagent\V20250513\Models;
 use TencentCloud\Common\AbstractModel;
 
 /**
- * QueryUserAuthority请求参数结构体
+ * AddScene请求参数结构体
  *
  * @method string getInstanceId() 获取实例ID
  * @method void setInstanceId(string $InstanceId) 设置实例ID
- * @method string getModule() 获取分为知识库knowledge、数据源datasource、自定义场景scene
- * @method void setModule(string $Module) 设置分为知识库knowledge、数据源datasource、自定义场景scene
- * @method string getObjectId() 获取对象id,分为知识库id、数据源id、场景id
- * @method void setObjectId(string $ObjectId) 设置对象id,分为知识库id、数据源id、场景id
+ * @method Scene getScene() 获取场景
+ * @method void setScene(Scene $Scene) 设置场景
+ * @method integer getUseScope() 获取1仅自己使用，2指定用户，0全员
+ * @method void setUseScope(integer $UseScope) 设置1仅自己使用，2指定用户，0全员
+ * @method array getAuthorityUins() 获取可使用用户列表
+ * @method void setAuthorityUins(array $AuthorityUins) 设置可使用用户列表
  */
-class QueryUserAuthorityRequest extends AbstractModel
+class AddSceneRequest extends AbstractModel
 {
     /**
      * @var string 实例ID
@@ -35,19 +37,25 @@ class QueryUserAuthorityRequest extends AbstractModel
     public $InstanceId;
 
     /**
-     * @var string 分为知识库knowledge、数据源datasource、自定义场景scene
+     * @var Scene 场景
      */
-    public $Module;
+    public $Scene;
 
     /**
-     * @var string 对象id,分为知识库id、数据源id、场景id
+     * @var integer 1仅自己使用，2指定用户，0全员
      */
-    public $ObjectId;
+    public $UseScope;
+
+    /**
+     * @var array 可使用用户列表
+     */
+    public $AuthorityUins;
 
     /**
      * @param string $InstanceId 实例ID
-     * @param string $Module 分为知识库knowledge、数据源datasource、自定义场景scene
-     * @param string $ObjectId 对象id,分为知识库id、数据源id、场景id
+     * @param Scene $Scene 场景
+     * @param integer $UseScope 1仅自己使用，2指定用户，0全员
+     * @param array $AuthorityUins 可使用用户列表
      */
     function __construct()
     {
@@ -66,12 +74,17 @@ class QueryUserAuthorityRequest extends AbstractModel
             $this->InstanceId = $param["InstanceId"];
         }
 
-        if (array_key_exists("Module",$param) and $param["Module"] !== null) {
-            $this->Module = $param["Module"];
+        if (array_key_exists("Scene",$param) and $param["Scene"] !== null) {
+            $this->Scene = new Scene();
+            $this->Scene->deserialize($param["Scene"]);
         }
 
-        if (array_key_exists("ObjectId",$param) and $param["ObjectId"] !== null) {
-            $this->ObjectId = $param["ObjectId"];
+        if (array_key_exists("UseScope",$param) and $param["UseScope"] !== null) {
+            $this->UseScope = $param["UseScope"];
+        }
+
+        if (array_key_exists("AuthorityUins",$param) and $param["AuthorityUins"] !== null) {
+            $this->AuthorityUins = $param["AuthorityUins"];
         }
     }
 }
