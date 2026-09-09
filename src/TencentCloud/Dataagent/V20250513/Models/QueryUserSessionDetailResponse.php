@@ -18,31 +18,45 @@ namespace TencentCloud\Dataagent\V20250513\Models;
 use TencentCloud\Common\AbstractModel;
 
 /**
- * GetSessionDetails返回参数结构体
+ * QueryUserSessionDetail返回参数结构体
  *
- * @method array getRecordList() 获取会话记录详情
- * @method void setRecordList(array $RecordList) 设置会话记录详情
- * @method integer getRecordCount() 获取记录总数
- * @method void setRecordCount(integer $RecordCount) 设置记录总数
- * @method string getRunRecord() 获取当前在运行的record信息
- * @method void setRunRecord(string $RunRecord) 设置当前在运行的record信息
+ * @method string getSubAccountUin() 获取<p>用户 Id</p>
+ * @method void setSubAccountUin(string $SubAccountUin) 设置<p>用户 Id</p>
+ * @method string getSessionId() 获取<p>会话id</p>
+ * @method void setSessionId(string $SessionId) 设置<p>会话id</p>
+ * @method array getRecordList() 获取<p>会话详情数组</p>
+ * @method void setRecordList(array $RecordList) 设置<p>会话详情数组</p>
+ * @method integer getTotalCount() 获取<p>记录总数</p>
+ * @method void setTotalCount(integer $TotalCount) 设置<p>记录总数</p>
+ * @method string getRunRecord() 获取<p>运行中的聊天请求, 返回为json字符串</p>
+ * @method void setRunRecord(string $RunRecord) 设置<p>运行中的聊天请求, 返回为json字符串</p>
  * @method string getRequestId() 获取唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
  * @method void setRequestId(string $RequestId) 设置唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
  */
-class GetSessionDetailsResponse extends AbstractModel
+class QueryUserSessionDetailResponse extends AbstractModel
 {
     /**
-     * @var array 会话记录详情
+     * @var string <p>用户 Id</p>
+     */
+    public $SubAccountUin;
+
+    /**
+     * @var string <p>会话id</p>
+     */
+    public $SessionId;
+
+    /**
+     * @var array <p>会话详情数组</p>
      */
     public $RecordList;
 
     /**
-     * @var integer 记录总数
+     * @var integer <p>记录总数</p>
      */
-    public $RecordCount;
+    public $TotalCount;
 
     /**
-     * @var string 当前在运行的record信息
+     * @var string <p>运行中的聊天请求, 返回为json字符串</p>
      */
     public $RunRecord;
 
@@ -52,9 +66,11 @@ class GetSessionDetailsResponse extends AbstractModel
     public $RequestId;
 
     /**
-     * @param array $RecordList 会话记录详情
-     * @param integer $RecordCount 记录总数
-     * @param string $RunRecord 当前在运行的record信息
+     * @param string $SubAccountUin <p>用户 Id</p>
+     * @param string $SessionId <p>会话id</p>
+     * @param array $RecordList <p>会话详情数组</p>
+     * @param integer $TotalCount <p>记录总数</p>
+     * @param string $RunRecord <p>运行中的聊天请求, 返回为json字符串</p>
      * @param string $RequestId 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
      */
     function __construct()
@@ -70,17 +86,25 @@ class GetSessionDetailsResponse extends AbstractModel
         if ($param === null) {
             return;
         }
+        if (array_key_exists("SubAccountUin",$param) and $param["SubAccountUin"] !== null) {
+            $this->SubAccountUin = $param["SubAccountUin"];
+        }
+
+        if (array_key_exists("SessionId",$param) and $param["SessionId"] !== null) {
+            $this->SessionId = $param["SessionId"];
+        }
+
         if (array_key_exists("RecordList",$param) and $param["RecordList"] !== null) {
             $this->RecordList = [];
             foreach ($param["RecordList"] as $key => $value){
-                $obj = new Record();
+                $obj = new RecordList();
                 $obj->deserialize($value);
                 array_push($this->RecordList, $obj);
             }
         }
 
-        if (array_key_exists("RecordCount",$param) and $param["RecordCount"] !== null) {
-            $this->RecordCount = $param["RecordCount"];
+        if (array_key_exists("TotalCount",$param) and $param["TotalCount"] !== null) {
+            $this->TotalCount = $param["TotalCount"];
         }
 
         if (array_key_exists("RunRecord",$param) and $param["RunRecord"] !== null) {
